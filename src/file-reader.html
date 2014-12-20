@@ -1,0 +1,39 @@
+<script type='text/javascript'>
+    angular.module('lightApp').controller('fileReaderCtrl', function ($scope) {
+        $scope.showContent = function($fileContent){
+            $scope.content = $fileContent;
+        };
+    });
+
+    angular.module('lightApp').directive('onReadFile', function ($parse) {
+        return {
+            restrict: 'A',
+            scope: false,
+            link: function(scope, element, attrs) {
+                var fn = $parse(attrs.onReadFile);
+
+                element.on('change', function(onChangeEvent) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(onLoadEvent) {
+                        scope.$apply(function() {
+                            fn(scope, {$fileContent:onLoadEvent.target.result});
+                        });
+                    };
+
+                    reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+                });
+            }
+        };
+    });
+</script>
+<div class="form-group" ng-class="{'has-error': hasError(), 'has-success': hasSuccess()}">
+  <label class="control-label" ng-show="showTitle()">{{form.title}}</label>
+  <div class="form-group" ng-controller="fileReaderCtrl">
+    <input type="file" on-read-file="showContent($$value$$ = $fileContent)" sf-changed="form" ng-model="$$value$$" schema-validate="form" />
+    <div ng-if="content">
+      <pre>{{ content }}</pre>
+    </div>
+    <span class="help-block">{{ (hasError() && errorMessage(schemaError())) || form.description}}</span>
+  </div>
+</div>
