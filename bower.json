@@ -1,12 +1,12 @@
 {
-  "name": "angular-schema-form-strapselect",
+  "name": "angular-schema-form-file-reader",
   "main": [
-    "bootstrap-strapselect.min.js"
+    "bootstrap-file-reader.min.js"
   ],
-  "version": "0.1.0",
+  "version": "0.1.1",
   "authors": [
-    "Cheng Zhu, Steve Hu",
-    "Cheng Zhu<cheng@aqmin.com>;Steve Hu<stevehu@gmail.com"
+    "Steve Hu",
+    "stevehu@gmail.com"
   ],
   "moduleType": [
     "globals"
@@ -18,7 +18,7 @@
     "json",
     "json-schema",
     "schema",
-    "angular-schema-form-strapselect"
+    "angular-schema-form-file-reader"
   ],
   "license": "MIT",
   "ignore": [
@@ -29,11 +29,9 @@
     "coverage"
   ],
   "dependencies": {
-    "angular-strap": ">= 2.1.0"
   },
   "devDependencies": {
     "angular-schema-form": ">= 0.7",
-    "angular-translate": ">= 2.4.0",
     "angular-mocks": ">= 1.2"
   }
 }
